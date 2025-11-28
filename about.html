@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/about.css">
+    <link rel="stylesheet" href="./css/darkMode.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <title>Portfolio-About</title>
+</head>
+
+<!-- chat bot css -->
+<style>
+
+    .chat-body {
+        max-height: 300px;
+        overflow-y: auto;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .bot-message, .user-message {
+        padding: 8px 12px;
+        border-radius: 10px;
+        margin: 5px 0;
+        max-width: 70%;
+        word-wrap: break-word;
+    }
+    
+    .bot-message {
+        background-color: #f1f1f1;
+        align-self: flex-start; /* Bot messages on left */
+    }
+    
+    .user-message {
+        background-color: #007bff;
+        color: white;
+        align-self: flex-end; /* User messages on right */
+    }
+    /* Chatbot Button */
+    #chatbotButton {
+        position: fixed;
+        bottom: 70px; /* Below Dark Mode Button */
+        right: 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+    }
+    
+    #chatbotButton:hover {
+        background-color: #0056b3;
+        transform: scale(1.1);
+    }
+    
+    /* Chatbot UI */
+    #chatbot {
+        position: fixed;
+        bottom: 130px; /* Adjust position */
+        right: 20px;
+        width: 300px;
+        height: 400px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        display: none;
+        flex-direction: column;
+    }
+    
+    /* Chatbot Header */
+    .chat-header {
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+        font-weight: bold;
+        text-align: center;
+        position: relative;
+    }
+    
+    /* Close Button */
+    #closeChat {
+        position: absolute;
+        right: 10px;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    
+    /* Chat Body */
+    .chat-body {
+        flex-grow: 1;
+        padding: 10px;
+        overflow-y: auto;
+        max-height: 300px;
+    }
+    
+    /* User Input */
+    .chat-input {
+        display: flex;
+        padding: 10px;
+        border-top: 1px solid #ddd;
+    }
+    
+    .chat-input input {
+        flex-grow: 1;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    
+    .chat-input button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        margin-left: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    .chat-input button:hover {
+        background-color: #0056b3;
+    }
+    
+    /* Chat Messages */
+    .bot-message, .user-message {
+        margin: 5px;
+        padding: 8px;
+        border-radius: 10px;
+        max-width: 75%;
+    }
+    
+    .bot-message {
+        background-color: #f1f1f1;
+        align-self: flex-start;
+    }
+    
+    .user-message {
+        background-color: #007bff;
+        color: white;
+        align-self: flex-end;
+    }
+    
+    
+    
+    /* Resume Download Button */
+    .resume-button {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        margin-top: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    
+    .resume-button:hover {
+        background-color: #218838;
+    }
+    
+    
+    
+    /* Dark Mode Support */
+    .dark-mode .chat-body {
+        background-color: #1e1e1e;
+    }
+    
+     .dark-mode .chat-input{
+        background-color: black;
+    }
+    
+    .dark-mode .bot-message {
+        background-color: #444;
+        color: white;
+    }
+    
+    .dark-mode .user-message {
+        background-color: #0a84ff;
+        color: white;
+    }
+    
+</style>
+    <style>
+        /* --- Chatbot Open/Close Animation --- */
+    #chatbot {
+        transform: scale(0.6) translateY(40px);
+        opacity: 0;
+        transition: all 0.35s ease;
+    }
+
+    /* Visible State */
+    #chatbot.show {
+        transform: scale(1) translateY(0px);
+        opacity: 1;
+    }
+
+    </style>
+    
+<body>
+    
+    <!-- Navigation Content Section -->
+
+    <nav class="navigation">
+        <a href="index.html" class="logo">
+            <i class="fa-brands fa-slack"></i>
+            Portfolio
+        </a>
+        <!-- <button class="menu-toggle" onclick="toggleMenu()">☰</button> -->
+        <button class="menu-toggle" type="button" id="menuToggle">☰</button>
+        
+        <ul class="menu ms-auto">
+            <li class="nav-item"><a class="nav-link " href="./index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="./about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="./portfolio.html">Portfolio</a></li>
+            <li class="nav-item"><a class="nav-link" href="./resume.html">Resume</a></li>
+            <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Sidebar Menu -->
+    <div class="sidebar" id="sidebarMenu">
+        <button class="close-btn" id="closeMenu">✖</button>
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link " href="./index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="./about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="./portfolio.html">Portfolio</a></li>
+            <li class="nav-item"><a class="nav-link" href="./resume.html">Resume</a></li>
+            <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <section id="about-main">
+        <div class="about-content">
+            <h1 class="about-title">About Me</h1>
+            <div class="about-section">
+                <div class="about-photo">
+                    <img src="./Images/2.jpeg" alt="Sumit Kumar">
+                </div>
+                <div class="about-text">
+                    <p>
+                        Hello! I'm Sumit Kumar, 
+                        a passionate technology enthusiast and full-stack developer with a knack for problem-solving. 
+                        I thrive on turning complex challenges into elegant solutions, 
+                        leveraging my skills in both front-end and back-end development.
+                        My journey in programming and data analysis has equipped me with a unique perspective on creating impactful and innovative solutions.
+                    </p>
+                    <ul class="personal-details">
+                        <li><strong>> Name:</strong> Sumit Kumar</li>
+                        <!-- <li><strong>> Birthday:</strong> 25 October 2004</li> -->
+                        <li><strong>> City:</strong> Delhi, India</li>
+                        <!-- <li><strong>> Age:</strong> 19</li> -->
+                        <li><strong>> Phone no. :</strong> +91 8178052288</li>
+                        <li><strong>> Email:</strong> sumitgupta5904@gmail.com</li>
+                        <!-- <li><strong>> Degree:</strong> ></li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="badges-section">
+        <h2>Earned Badges</h2>
+        <div class="underline"></div>
+
+        <div class="badges-container">
+
+            <!-- Badge 1 -->
+            <div class="badge-item">
+                <img src="./Images/badges/Batch - AI Foundations Associate.png" alt="SQL Badge">
+                <span>AI Basics</span>
+            </div>
+
+            <!-- Badge 2 -->
+            <div class="badge-item">
+                <img src="./Images/badges/data-analytics-and-microsoft.svg" alt="Python Badge">
+                <span>Data Analytics Badge</span>
+            </div>
+
+            <!-- Badge 3 -->
+            <div class="badge-item">
+                <img src="./Images/badges/gemini_icon.png" alt="Cloud Badge">
+                <span>Google Gemini</span>
+            </div>
+
+            <!-- Badge 4 -->
+            <div class="badge-item">
+                <img src="./Images/badges/get-started-power-bi.png" alt="Problem Solving Badge">
+                <span>Power Bi Badge</span>
+            </div>
+
+            <!-- Badge 5 -->
+            <div class="badge-item">
+                <img src="./Images/badges/Leetcode.gif" alt="AI Badge">
+                <span>SQL Badge</span>
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <!-- Skills Section -->
+    
+    <section id="skills">
+        <div class="skills-content">
+            <h2> << My Skills >></h2>
+            <div class="skills-list">
+                <div class="skill">
+                    <i class="fab fa-html5"></i>
+                    <div class="skill-name">HTML</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress: 100%;"></div>
+                    </div>
+                    <div class="skill-percentage">100%</div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-css3-alt"></i>
+                    <div class="skill-name">CSS</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress: 100%;"></div>
+                    </div>
+                    <div class="skill-percentage">100%</div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-python"></i>
+                    <div class="skill-name">Python</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress: 90%;"></div>
+                    </div>
+                    <div class="skill-percentage">90%</div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-java"></i>
+                    <div class="skill-name">Java</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress: 60%;"></div>
+                    </div>
+                    <div class="skill-percentage">60%</div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-php"></i>
+                    <div class="skill-name">PHP</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress: 80%;"></div>
+                    </div>
+                    <div class="skill-percentage">80%</div>
+                </div>
+                <div class="skill">
+                    <i class="fas fa-database"></i>
+                    <div class="skill-name">MongoDB</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress: 75%;"></div>
+                    </div>
+                    <div class="skill-percentage">75%</div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-cuttlefish"></i>
+                    <div class="skill-name">C++</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress: 100%;"></div>
+                    </div>
+                    <div class="skill-percentage">100%</div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-cuttlefish"></i>
+                    <div class="skill-name">C</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress: 95%;"></div>
+                    </div>
+                    <div class="skill-percentage">95%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== Achievements Section ===================== -->
+    <section class="achievements-section">
+        <div class="container-achievements">
+            <h2>My Achievements</h2>
+            <p>Here are some of the key milestones and recognitions I've earned in my journey.</p>
+
+            <div class="achievements-grid">
+                <!-- Achievement Item -->
+                <div class="achievement-item" data-bs-toggle="modal" data-bs-target="#achievementModal1">
+                    <img src="./Images/1st_pos.png" alt="1st Position Winner">
+                    <h3>1st Position Winner</h3>
+                    <p>Click to view more photos & details</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== Achievement Modal ===================== -->
+    <div class="modal fade" id="achievementModal1" tabindex="-1" aria-labelledby="achievementModalLabel1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body d-flex flex-wrap">
+                    <!-- Left Side: Carousel -->
+                    <div id="achievementCarousel1" class="carousel slide col-md-6 p-2" data-bs-ride="carousel" data-bs-interval="3000">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                            <img src="./Images/1st.jpg" class="d-block w-100 rounded" alt="Achievement Photo 1">
+                            </div>
+                            <div class="carousel-item">
+                            <img src="./Images/1st_2.jpg" class="d-block w-100 rounded" alt="Achievement Photo 2">
+                            </div>
+                            <div class="carousel-item">
+                            <img src="./Images/group.jpg" class="d-block w-100 rounded" alt="Achievement Photo 3">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: Description -->
+                    <div class="col-md-6 p-3 d-flex flex-column justify-content-center">
+                        <h3>1st Position Winner</h3>
+                        <p>Awarded first prize at Jagannath University for developing a dynamic web application using the .NET framework. This achievement highlights my skills in full-stack development, problem-solving, and innovative project implementation.</p>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="footer-bottom">
+        <p>&copy; 2024 Sumit Kumar. All rights reserved. | Designed by<span> Sumit Kumar </span> </p>
+    </div>
+    <!-- Dark Mode Toggle Button -->
+    <button id="themeToggle">
+        <i id="themeIcon" class="fa-solid fa-moon"></i>
+    </button>
+
+
+    <!-- Chatbot Button -->
+    <button id="chatbotButton">
+        <i class="fa-solid fa-comments"></i>
+    </button>
+
+    <!-- Chatbot UI -->
+    <div id="chatbot">
+        <div class="chat-header">
+            <span>Chat with Sumit's Bot 🤖</span>
+            <button id="closeChat">&times;</button>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <p class="bot-message">Hi! I'm Sumit's Chatbot. How can I help you? 😊</p>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Type your message...">
+            <button id="sendMessage"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="./JavaScript/script.js"></script>
+    <script src="./JavaScript/dark_mode_script.js"></script>
+    <script src="./JavaScript/chatBot.js"></script>
+
+    
+
+</body>
+</html>

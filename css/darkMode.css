@@ -1,0 +1,423 @@
+
+    body {
+        transition: background 0.3s, color 0.3s;
+    }
+    .dark-mode {
+        background-color: #121212;
+        color: white;
+    }
+    #themeToggle {
+        background: none;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+        position: fixed;
+        bottom: 20px; /* Adjust the top position */
+        right: 20px; /* Adjust the right position */
+        z-index: 1000;
+    }
+
+    .dark-mode .footer {
+        background: #1e1e1e;
+    }
+
+    .dark-mode .footer-bottom, 
+    .dark-mode #about-main, 
+    .dark-mode #skills, 
+    .dark-mode #resume{
+        background-color: #121212;
+
+    }
+
+    .dark-mode .navigation {
+        background: #1e1e1e;
+    }
+
+    .dark-mode .navigation {
+        background: #1e1e1e;
+    }
+
+    .dark-mode .menu a {
+        color: white;
+    }
+
+    /* Dark Mode Icon Style */
+    .dark-mode #themeIcon {
+        color: white;
+    }
+
+    /* Light Mode Icon Style */
+    #themeIcon {
+        color: black;
+    } 
+
+    .dark-mode .sidebar,
+    .dark-mode .certificate-card {
+        background: #1e1e1e;
+    }
+
+    .dark-mode .certificate{
+        background-color: black;
+    }
+
+    .dark-mode .nav-link{
+
+        color: white;
+    }
+
+    .dark-mode .close-btn{
+
+        color: white;
+    }
+    .dark-mode .logo {
+
+        color: aqua;
+    }
+
+    .dark-mode .logo i{
+
+        color: aqua;
+    }
+
+    /* Dark Mode Styles */
+    .dark-mode .skill-name, .dark-mode .skill-percentage,
+    .dark-mode .badge-item span {
+        color: white; /* Default color for skill names in dark mode */
+    }
+
+    /* Specific Color for each skill based on icon */
+    .dark-mode .skill .fa-html5 {
+        color: #ff4411; /* HTML color */
+    }
+
+    .dark-mode .skill .fa-css3-alt {
+        color: #0823ee; /* CSS color */
+    }
+    .dark-mode .skill .fa-python {
+        color: #306998; /* Python color */
+    }
+
+    .dark-mode .skill .fa-java {
+        color: #007396; /* Java color */
+    }
+
+    .dark-mode .skill .fa-php {
+        color: #bb4ef6; /* PHP color */
+    }
+
+    .dark-mode .skill .fa-database {
+        color: #72f074; /* MongoDB color */
+    }
+
+    .dark-mode .skill .fa-cuttlefish {
+        color: #00599C; /* C++/C color */
+    }
+
+
+    .dark-mode .skill, 
+    .dark-mode .skill-item, 
+    .dark-mode .project-item, 
+    .dark-mode .detail-card, 
+    .dark-mode .container, 
+    .dark-mode .cert-item-resume,
+    .dark-mode .contact-form-container,
+    .dark-mode .badge-item{
+        /* background-color: rgb(3, 223, 248); */
+        background: #1e1e1e;
+        /* border-color: #0823ee; */
+
+    }
+    .dark-mode .skill:hover{
+        /* background-color: aquamarine; */
+        transform: translateY(-5px); 
+        /* box-shadow: 0 15px 12px #1e1e1e; */
+        box-shadow: 0 0 10px 3px aqua; /* Aqua glow effect */
+
+    }
+    
+
+    .dark-mode .badge-item::after {
+        content: "";
+        position: absolute;
+        bottom: 8px; /* thoda niche text ke */
+        left: 10px;
+        right: 10px;
+        height: 2px;
+        background-color: aqua;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+    }
+
+    .dark-mode .badge-item:hover::after {
+        transform: scaleX(1);
+    }
+
+    .dark-mode .main-text h1, 
+    .dark-mode .about-title, 
+    .dark-mode .latest-project h2, 
+    .dark-mode .resume-content h1, 
+    .dark-mode .resume-content h1, 
+    .dark-mode .projects h2, 
+    .dark-mode .skills-content h2{
+
+        /* color: rgb(5, 182, 246); */
+        color: aqua;
+    }
+    .dark-mode .filter-btn,
+    .dark-mode .view-btn{
+        border: 2px solid aqua;
+        color: white;
+    }
+
+    .dark-mode .filter-btn.active,
+    .dark-mode .certificate-badge{
+        border-radius: 20px;
+        background-color: aqua !important; /* Change background to aqua in dark mode */
+        color: black !important; /* Optional: Change text color to black for better contrast */
+    }
+
+    .dark-mode .view-btn:hover{
+        border-radius: 20px;
+        background-color: aqua !important; /* Change background to aqua in dark mode */
+        color: black !important;
+    }
+
+    .dark-mode .filter-btn:hover{
+        background-color: rgb(5, 182, 246);
+
+    }
+
+    .dark-mode .skill-bar:hover .skill-progress {
+        background-color: #18c758; 
+    }
+
+    .dark-mode .main-text p, 
+    .dark-mode .about-text, 
+    .dark-mode .resume-section p{
+
+        /* color: rgb(5, 182, 246); */
+        color: white;
+    }
+    .dark-mode .read-more-btn,
+    .dark-mode .back-button:hover{
+
+        background-color: rgb(5, 182, 246);
+        color: black;
+        /* text */
+    }
+
+    .dark-mode .skill-progress,
+    .dark-mode .skill-bar{
+        background-color: rgb(5, 182, 246);
+    }
+
+    .dark-mode .read-more-btn:hover, 
+    .dark-mode .about-title::after, 
+    .dark-mode .latest-project .underline, 
+    .dark-mode .resume-content h1::after,
+    .dark-mode .skill-bar::before, 
+    .dark-mode .contact-content h1::after{
+        background-color: aqua;
+    }
+
+    .dark-mode .resume-section h2, 
+    .dark-mode .project-item h3,
+    .dark-mode .cert-item-resume h3{
+        color: rgb(5, 182, 246);
+    }
+
+    /* Active Link Styles */
+    /* .nav-link.active {
+        background-color: #007bff;
+        color: white;
+    } */
+
+    /* Dark Mode Styles */
+    .dark-mode .nav-link.active {
+        background-color: aqua !important; /* Change background to aqua in dark mode */
+        color: black !important; /* Optional: Change text color to black for better contrast */
+    }
+
+    .dark-mode .menu a:hover{
+        background-color: rgb(5, 182, 246);
+    }
+
+    .dark-mode .download-button{
+        border-color: aqua;
+    }
+
+    .dark-mode .download-button:hover{
+        background-color: aqua;
+        color: black;
+    }
+
+    .dark-mode .menu-toggle{
+        color: rgb(5, 182, 246);
+    }
+
+    .dark-mode .footer-social-icon:hover{
+        background-color: aqua;
+        color: black;
+    }
+
+    .dark-mode .social-icon:hover{
+        background-color: aqua;
+        color: black;
+    }
+
+    /* Main Image Glow Effect in Dark Mode */
+    .dark-mode .main-img img {
+        position: relative;
+        box-shadow: 0 0 20px 7px aqua; /* Aqua glow effect */
+    }
+
+    .dark-mode .about-photo{
+        box-shadow: 0 0 10px 8px aqua; /* Aqua glow effect */
+
+    }
+
+    .dark-mode .footer-container h3, .dark-mode .contact-content h1{
+        color: aqua;
+    }
+
+    .dark-mode .project-item a,
+    .dark-mode .cert-item-resume a{
+        color: rgb(5, 182, 246);
+    }
+
+    .dark-mode .project-item a:hover,
+    .dark-mode .cert-item-resume a:hover{
+        background-color: aqua;
+        color: black;
+    }
+    
+    .dark-mode .more-projects-container a,
+    .dark-mode .back-button{
+        background-color: aqua;
+        color: black;
+    }
+
+    .dark-mode .more-projects-container a:hover{
+        box-shadow: 0 0 10px 7px rgb(67, 173, 205);
+        /* border-color: solidblack; */
+        color: black;
+    }
+
+    .dark-mode .footer-contact p span , 
+    .dark-mode .personal-details li strong{
+        color: rgb(5, 182, 246); /* Color for the labels (Email: and Phone:) */
+    }
+
+    .dark-mode .education-item h3, 
+    .dark-mode .skill-content h4{
+        color: #b7b3b3;
+    }
+
+    .dark-mode .form-group input, .dark-mode .form-group textarea{
+        background-color: black;
+        color: white;
+        border-color: aqua;
+    }
+
+    .dark-mode .contact-form-container h2, .dark-mode .detail-card i{
+        color: rgb(24, 245, 245);
+    }
+
+    /* .dark-mode .detail-card i:hover {
+        color: #12fc16;
+    } */
+
+    .dark-mode .detail-card .fa-envelope {
+        color: #f93407; /* Orange-Red */
+    }
+
+    /* Phone Icon */
+    .dark-mode .detail-card .fa-phone {
+        color: #12fc16; /* Green */
+    }
+
+    .dark-mode .detail-card .fa-share-alt {
+        color: white; /* Green */
+    }
+
+
+    .dark-mode .social-link .fa-github:hover {
+        color: #FFFFFF; /* White (GitHub) */
+    }
+
+    .dark-mode .contact-form-container{
+        /* color: rgb(24, 245, 245); */
+        box-shadow:   5px 5px aqua;
+    }
+
+    .dark-mode .skill-item:hover,
+    .dark-mode .cert-item-resume:hover{
+        /* background-color: rgb(5, 182, 246); */
+        box-shadow:   5px 5px aqua; /* Aqua glow effect */
+    }
+
+
+    .dark-mode .btn{
+        background-color: aqua;
+    }
+
+    .dark-mode .detail-card:hover{
+        box-shadow: 5px 5px aqua;
+    }
+
+    .dark-mode .detail-card a:hover{
+        color: aqua;
+    }
+
+    .dark-mode .footer-bottom p span{
+        color: aqua;
+    }
+
+    .dark-mode .detail-card a:hover::after{
+        background-color: #12fc16;
+    }
+
+    .dark-mode .btn:hover{
+        box-shadow: 0 0 10px 7px rgb(67, 173, 205);
+        border-color: black;
+        background-color: #12fc16;
+        color: black;
+    }
+
+    .dark-mode #successMessage {
+        color: #12fc16;
+        
+    }
+    
+
+    
+    /* Hover Effect for Dark Mode Icon */
+    /* #themeToggle:hover {
+        /* transform: scale(1); Slightly enlarge the icon 
+    } */
+
+    #themeToggle:hover #themeIcon {
+        color: aqua; /* Change color on hover (example: golden color) */
+    }
+
+    .dark-mode .project-title {
+    color: aqua;
+    }
+
+
+    /* Dark mode adjustments */
+        .dark-mode .contact-social {
+            background: #1e1e1e;
+        }
+
+        .dark-mode .contact-left h2,
+        .dark-mode .contact-left p,
+        .dark-mode .contact-list li {
+            color: #f0f0f0;
+        }
+
+        .dark-mode .linkedin-card {
+            background: #2a2a2a;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+        }

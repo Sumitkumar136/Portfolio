@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/darkMode.css">
+    <link rel="stylesheet" href="./css/contact.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <title>Portfolio-Resume</title>
+</head>
+
+
+<!-- chat bot css -->
+<style>
+
+    .chat-body {
+        max-height: 300px;
+        overflow-y: auto;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .bot-message, .user-message {
+        padding: 8px 12px;
+        border-radius: 10px;
+        margin: 5px 0;
+        max-width: 70%;
+        word-wrap: break-word;
+    }
+    
+    .bot-message {
+        background-color: #f1f1f1;
+        align-self: flex-start; /* Bot messages on left */
+    }
+    
+    .user-message {
+        background-color: #007bff;
+        color: white;
+        align-self: flex-end; /* User messages on right */
+    }
+    /* Chatbot Button */
+    #chatbotButton {
+        position: fixed;
+        bottom: 70px; /* Below Dark Mode Button */
+        right: 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+    }
+    
+    #chatbotButton:hover {
+        background-color: #0056b3;
+        transform: scale(1.1);
+    }
+    
+    /* Chatbot UI */
+    #chatbot {
+        position: fixed;
+        bottom: 130px; /* Adjust position */
+        right: 20px;
+        width: 300px;
+        height: 400px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        display: none;
+        flex-direction: column;
+    }
+    
+    /* Chatbot Header */
+    .chat-header {
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+        font-weight: bold;
+        text-align: center;
+        position: relative;
+    }
+    
+    /* Close Button */
+    #closeChat {
+        position: absolute;
+        right: 10px;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    
+    /* Chat Body */
+    .chat-body {
+        flex-grow: 1;
+        padding: 10px;
+        overflow-y: auto;
+        max-height: 300px;
+    }
+    
+    /* User Input */
+    .chat-input {
+        display: flex;
+        padding: 10px;
+        border-top: 1px solid #ddd;
+    }
+    
+    .chat-input input {
+        flex-grow: 1;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    
+    .chat-input button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        margin-left: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    .chat-input button:hover {
+        background-color: #0056b3;
+    }
+    
+    /* Chat Messages */
+    .bot-message, .user-message {
+        margin: 5px;
+        padding: 8px;
+        border-radius: 10px;
+        max-width: 75%;
+    }
+    
+    .bot-message {
+        background-color: #f1f1f1;
+        align-self: flex-start;
+    }
+    
+    .user-message {
+        background-color: #007bff;
+        color: white;
+        align-self: flex-end;
+    }
+    
+    
+    
+    /* Resume Download Button */
+    .resume-button {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        margin-top: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    
+    .resume-button:hover {
+        background-color: #218838;
+    }
+    
+    
+    
+    /* Dark Mode Support */
+    .dark-mode .chat-body {
+        background-color: #1e1e1e;
+    }
+    
+     .dark-mode .chat-input{
+        background-color: black;
+    }
+    
+    .dark-mode .bot-message {
+        background-color: #444;
+        color: white;
+    }
+    
+    .dark-mode .user-message {
+        background-color: #0a84ff;
+        color: white;
+    }
+    
+</style>
+
+    <style>
+        /* --- Chatbot Open/Close Animation --- */
+    #chatbot {
+        transform: scale(0.6) translateY(40px);
+        opacity: 0;
+        transition: all 0.35s ease;
+    }
+
+    /* Visible State */
+    #chatbot.show {
+        transform: scale(1) translateY(0px);
+        opacity: 1;
+    }
+
+    </style>
+    
+<body>
+    
+    <!-- Navigation Content Section -->
+
+    <nav class="navigation">
+        <a href="index.html" class="logo">
+            <i class="fa-brands fa-slack"></i>
+            Portfolio
+        </a>
+        <!-- <button class="menu-toggle" onclick="toggleMenu()">☰</button> -->
+        <button class="menu-toggle" type="button" id="menuToggle">☰</button>
+        
+        <ul class="menu ms-auto">
+            <li class="nav-item"><a class="nav-link " href="./index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link " href="./about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="./portfolio.html">Portfolio</a></li>
+            <li class="nav-item"><a class="nav-link" href="./resume.html">Resume</a></li>
+            <li class="nav-item"><a class="nav-link active" href="./contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Sidebar Menu -->
+    <div class="sidebar" id="sidebarMenu">
+        <button class="close-btn" id="closeMenu">✖</button>
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link " href="./index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link " href="./about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="./portfolio.html">Portfolio</a></li>
+            <li class="nav-item"><a class="nav-link" href="./resume.html">Resume</a></li>
+            <li class="nav-item"><a class="nav-link active" href="./contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+
+    <!-- Contact Page Content -->
+    <section id="contact">
+
+        <div class="contact-content">
+            <h1>Contact Me</h1>
+            <p>
+                Thank you for visiting my portfolio. I'm excited to connect with you and explore potential collaborations or opportunities. Whether you have a project in mind, need help with something, or just want to chat, feel free to reach out to me.
+            </p>
+            
+            <!-- Contact Details -->
+            <div class="contact-details">
+    
+                <div class="detail-card">
+                    <i class="fas fa-envelope"></i>
+                    <p>Email: <a href="mailto:officialsumitkumar31@gmail.com">officialsumitkumar31@gmail.com</a></p>
+                </div>
+    
+            
+        
+                <div class="detail-card">
+                    <i class="fas fa-share-alt"></i>
+                    <p>Social: 
+                        <a href="https://www.instagram.com/sumit_kumar.11/" class="social-link">
+                            <i class="fab fa-instagram"></i> 
+                        </a>
+                        <a href="https://www.facebook.com/sumit.kumar.2004?mibextid=ZbWKwL" class="social-link">
+                            <i class="fab fa-facebook-f"></i> 
+                        </a>
+                        <!-- <a href="https://www.linkedin.com/in/sumit-kumar-659751310/" class="social-link">
+                            <i class="fab fa-linkedin"></i> 
+                        </a> -->
+                        <a href="https://github.com/Sumitkumar136" class="social-link">
+                            <i class="fab fa-github"></i> 
+                        </a>
+                    </p>
+                </div>
+    
+            </div>
+    
+        </div>
+    
+    </section>
+
+    <!-- ===== Contact / Social Section (paste into contact.html) ===== -->
+    <section class="contact-social">
+    <div class="container-contact">
+        <div class="contact-left">
+            <h2>Connect With Me</h2>
+            <p>I'm available on LinkedIn — feel free to connect or message me for collaboration, internships, or project inquiries.</p>
+
+            <div class="social-icons">
+                <a href="https://leetcode.com/u/sumit_kumar5904/" target="_blank" rel="noopener" class="social-link">Leetcode</a>
+                <a href="https://unstop.com/u/sumitkum6512" target="_blank" rel="noopener" class="social-link">UnStop</a>
+                <a href="https://www.hackerrank.com/profile/officialsumitku1" target="_blank" rel="noopener" class="social-link">HackerRank</a>
+            </div>
+
+            <p class="small-note">Or click the badge on the right to view my full LinkedIn profile and recommendations.</p>
+        </div>
+
+        <div class="contact-right">
+            <div class="linkedin-card" id="linkedin-card-container">
+                <!-- Badge will be injected here by JavaScript -->
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+    <!-- Contact form -->
+    <section id="contact-form">
+        <div class="contact-form-container">
+            <h2>Contact Form</h2>
+            <form id="contactForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name"></label>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email"></label>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="subject"></label>
+                    <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message"></label>
+                    <textarea id="message" name="message" rows="4" placeholder="Message" required></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+
+            <p id="successMessage" style="display: none; color: green; text-align: center; margin-top: 10px;">
+                Message sent successfully!
+            </p>
+        </div>
+    </section>
+
+    <div class="footer-bottom">
+        <p>&copy; 2024 Sumit Kumar. All rights reserved. | Designed by<span> Sumit Kumar </span> </p>
+    </div>
+
+    <!-- Dark Mode Toggle Button -->
+    <button id="themeToggle">
+        <i id="themeIcon" class="fa-solid fa-moon"></i>
+    </button>
+
+    <!-- Chatbot Button -->
+    <button id="chatbotButton">
+        <i class="fa-solid fa-comments"></i>
+    </button>
+
+    <!-- Chatbot UI -->
+    <div id="chatbot">
+        <div class="chat-header">
+            <span>Chat with Sumit's Bot 🤖</span>
+            <button id="closeChat">&times;</button>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <p class="bot-message">Hi! I'm Sumit's Chatbot. How can I help you? 😊</p>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Type your message...">
+            <button id="sendMessage"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(e){
+            e.preventDefault();
+
+            const scriptURL = "https://script.google.com/macros/s/AKfycbxXFVkh9JSdPEf5J9pj_Bo4IprnskcpdmGa-l8Z7YavQ4BkbPxmvEkQ03oTG5aEYEE/exec"; // <-- yaha Google Apps Script URL paste karo
+
+            // Data object
+            const formData = {
+                name: this.name.value,
+                email: this.email.value,
+                subject: this.subject.value,
+                message: this.message.value
+            };
+
+            // Send data to Google Sheet
+            fetch(scriptURL, {
+                method: "POST",
+                body: JSON.stringify(formData),
+            })
+            .then(res => res.json())
+            .then(data => {
+                // SUCCESS MESSAGE SHOW
+                const successMessage = document.getElementById("successMessage");
+                successMessage.style.display = "block";
+
+                setTimeout(() => {
+                    successMessage.style.display = "none";
+                }, 3000);
+
+                this.reset(); // clear form
+            })
+            .catch(error => {
+                alert("Error sending message!");
+                console.log(error);
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="./JavaScript/script.js"></script>
+    <script src="./JavaScript/dark_mode_script.js"></script>
+    <script src="./JavaScript/chatBot.js"></script>
+    
+<script src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+
+<script>
+    function renderLinkedInBadge(theme) {
+        const container = document.getElementById("linkedin-card-container");
+        container.innerHTML = ""; // Clear existing badge
+
+        const badgeDiv = document.createElement("div");
+        badgeDiv.className = "badge-base LI-profile-badge";
+        badgeDiv.setAttribute("data-locale", "en_US");
+        badgeDiv.setAttribute("data-size", "medium");
+        badgeDiv.setAttribute("data-theme", theme); // light or dark
+        badgeDiv.setAttribute("data-type", "VERTICAL");
+        badgeDiv.setAttribute("data-vanity", "sumit-kumar-ai");
+        badgeDiv.setAttribute("data-version", "v1");
+
+        container.appendChild(badgeDiv);
+
+        // Load LinkedIn badge script
+        const script = document.createElement("script");
+        script.src = "https://platform.linkedin.com/badges/js/profile.js";
+        script.async = true;
+        container.appendChild(script);
+    }
+
+    // Detect current theme (example: using body class)
+    function detectTheme() {
+        return document.body.classList.contains("dark-mode") ? "dark" : "light";
+    }
+
+    // Initial render
+    renderLinkedInBadge(detectTheme());
+
+    // Optional: If theme can change dynamically on page
+    const observer = new MutationObserver(() => {
+        renderLinkedInBadge(detectTheme());
+    });
+
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+</script>
+
+</body>
+</html>

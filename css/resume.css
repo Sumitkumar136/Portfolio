@@ -1,0 +1,274 @@
+/**************************************Resume page***********************************************/
+.resume-content h1 {
+    text-align: center; 
+    margin-bottom: 10px; 
+    position: relative; 
+    font-size: 2.5rem; 
+    opacity: 0;
+    animation: fadeInUp 1.5s 0.3s forwards; /* Fade-in effect for the heading */
+
+}
+
+.resume-content h1::after {
+    content: ""; 
+    display: block;
+    width: 60px; 
+    height: 4px; 
+    background-color: #000203; 
+    margin: 10px auto 0 auto; 
+}
+
+.download-button {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: #1E3A8A;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    border: 2px solid #3647df;
+    border-radius: 5px;
+    padding: 10px 15px;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s, color 0.3s;
+    opacity: 0;
+    animation: fadeInUp 1s 0.6s forwards; /* Fade-in effect for download button */
+
+}
+
+.download-button i {
+    margin-right: 8px;
+}
+
+.download-button:hover {
+    background-color: #3B82F6;
+    color: #ffffff;
+}
+
+.more-projects-container {
+    text-align: center;
+    margin-top: 30px; 
+}
+
+.more-projects-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3647df; 
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.more-projects-link:hover {
+    /* background-color: #2a35c4; Darker shade of blue on hover */
+    transform: scale(1.05); /* Slightly increases the size of the button */
+    box-shadow: 0 4px 12px ; /* Subtle glow effect */
+}
+
+
+#resume {
+    padding: 50px;
+    background-color: #f4f4f4;
+    opacity: 0;
+    animation: fadeInUp 1.5s forwards; /* Fade-in effect for the entire resume page */
+
+}
+
+.resume-content {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.resume-section {
+    margin-bottom: 50px;
+    opacity: 0;
+    animation: fadeInUp 1s 1.2s forwards; /* Fade-in effect for the resume sections */
+
+}
+
+.resume-section h2 {
+    font-size: 2rem;
+    color: #1E3A8A;
+    margin-bottom: 15px;
+}
+
+.resume-section p {
+    font-size: 1rem;
+    color: #333;
+}
+
+.experience-item, .education-item {
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeInUp 1s 1.4s forwards; /* Fade-in effect for experience and education items */
+
+}
+
+.experience-item h3, .education-item h3 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+/* Resume Page - Projects Section */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    opacity: 0;
+    animation: fadeInUp 1s 1.6s forwards; /* Fade-in effect for the projects grid */
+
+}
+
+.project-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    opacity: 0;
+    animation: fadeInUp 1s 1.8s forwards; /* Fade-in effect for each project item */
+    transition: box-shadow 0.3s ease; /* Transition for smooth shadow effect */
+
+}
+
+.project-item h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.project-item p {
+    flex-grow: 1;
+}
+
+.project-item a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #3647df;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    margin-left: auto; /* This will push the button to the right side */
+    text-align: right; /* Aligns the text inside the button to the right */
+}
+
+.project-item a:hover {
+    text-decoration: none;
+    text-shadow: 0 0 10px rgba(56, 189, 248, 1), 0 0 20px rgba(56, 189, 248, 0.7), 0 0 30px rgba(56, 189, 248, 0.5); /* Glow effect */
+    background-color: #3647df;
+    color: #ffffff;
+}
+
+
+.project-item:hover {
+    box-shadow: 0 15px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+}
+
+/* Skills Section */
+ .skills {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.skill-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease; /* Transition for smooth shadow effect */
+}
+
+.skill-item h4 {
+    font-size: 1rem;
+    color: #333;
+}
+
+.skill-bar {
+    height: 8px;
+    background-color: #3647df;
+    border-radius: 5px;
+    margin-top: 5px;
+    position: relative;
+    overflow: hidden;
+    transition: width 0.3s ease;
+}
+
+.skill-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background-color: #1E3A8A;
+    transition: width 0.3s ease;
+}
+
+.skill-item:hover .skill-bar {
+    width: 100%;
+}
+
+.skill-item:hover .skill-bar::before {
+    width: 100%;
+}
+
+.skill-item:hover {
+    box-shadow: 0 15px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+}
+
+/* Keyframe Animations */
+
+/* Fade-in and upward effect */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr; /* Single column for small screens */
+    }
+}
+
+/* Responsive adjustments for mobile screens */
+@media (max-width: 768px) {
+    .skills {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for small screens */
+    }
+
+    .skill-item {
+        margin-bottom: 15px; /* Add space between items */
+        padding: 12px; /* Adjust padding for smaller screens */
+    }
+
+    .skill-item:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Smaller shadow for mobile */
+    }
+
+    .skill-item h4 {
+        font-size: 0.9rem; /* Adjust font size for small screens */
+    }
+    .download-button {
+        font-size: 0.8rem; /* Smaller font size for phones */
+        padding: 8px 12px; /* Reduced padding */
+        justify-content: flex-end; /* Align to the right */
+        margin-left: auto; /* Push the button to the right */
+        margin-right: 0; /* Ensure it's aligned to the right */
+        display: block; /* Ensure block-level display to take full width */
+    }
+}
