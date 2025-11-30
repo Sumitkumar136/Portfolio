@@ -90,11 +90,13 @@ When a user fills the contact form, the details are automatically stored in **Go
 
 ## 📸 **Screenshots**
 
-![Home Page](<img width="1886" height="985" alt="image" src="https://github.com/user-attachments/assets/40e1b870-020c-4c1a-b2f4-14dee9b982e5" />
-)
-![Projects Section](<img width="1882" height="985" alt="image" src="https://github.com/user-attachments/assets/6e522881-7011-439c-ad97-f0ff62e3b8b5" />
-)
-![Contact Form](#)
+### Home Page
+<img width="1886" height="985" alt="image" src="https://github.com/user-attachments/assets/40e1b870-020c-4c1a-b2f4-14dee9b982e5" />
+
+### Projects Section
+<img width="1882" height="985" alt="image" src="https://github.com/user-attachments/assets/6e522881-7011-439c-ad97-f0ff62e3b8b5" />
+
+### Contact Form]
 
 ---
 
