@@ -35,18 +35,18 @@
     
     .bot-message {
         background-color: #f1f1f1;
-        align-self: flex-start; /* Bot messages on left */
+        align-self: flex-start; 
     }
     
     .user-message {
         background-color: #007bff;
         color: white;
-        align-self: flex-end; /* User messages on right */
+        align-self: flex-end; 
     }
-    /* Chatbot Button */
+
     #chatbotButton {
         position: fixed;
-        bottom: 70px; /* Below Dark Mode Button */
+        bottom: 70px; 
         right: 20px;
         background-color: #007bff;
         color: white;
@@ -65,10 +65,9 @@
         transform: scale(1.1);
     }
     
-    /* Chatbot UI */
     #chatbot {
         position: fixed;
-        bottom: 130px; /* Adjust position */
+        bottom: 130px; 
         right: 20px;
         width: 300px;
         height: 400px;
@@ -79,7 +78,6 @@
         flex-direction: column;
     }
     
-    /* Chatbot Header */
     .chat-header {
         background-color: #007bff;
         color: white;
@@ -89,7 +87,6 @@
         position: relative;
     }
     
-    /* Close Button */
     #closeChat {
         position: absolute;
         right: 10px;
@@ -100,7 +97,6 @@
         cursor: pointer;
     }
     
-    /* Chat Body */
     .chat-body {
         flex-grow: 1;
         padding: 10px;
@@ -108,7 +104,6 @@
         max-height: 300px;
     }
     
-    /* User Input */
     .chat-input {
         display: flex;
         padding: 10px;
@@ -136,7 +131,6 @@
         background-color: #0056b3;
     }
     
-    /* Chat Messages */
     .bot-message, .user-message {
         margin: 5px;
         padding: 8px;
@@ -155,9 +149,6 @@
         align-self: flex-end;
     }
     
-    
-    
-    /* Resume Download Button */
     .resume-button {
         background-color: #28a745;
         color: white;
@@ -174,8 +165,6 @@
     }
     
     
-    
-    /* Dark Mode Support */
     .dark-mode .chat-body {
         background-color: #1e1e1e;
     }
@@ -197,18 +186,16 @@
 </style>
 
     <style>
-        /* --- Chatbot Open/Close Animation --- */
-    #chatbot {
-        transform: scale(0.6) translateY(40px);
-        opacity: 0;
-        transition: all 0.35s ease;
-    }
+        #chatbot {
+            transform: scale(0.6) translateY(40px);
+            opacity: 0;
+            transition: all 0.35s ease;
+        }
 
-    /* Visible State */
-    #chatbot.show {
-        transform: scale(1) translateY(0px);
-        opacity: 1;
-    }
+        #chatbot.show {
+            transform: scale(1) translateY(0px);
+            opacity: 1;
+        }
 
     </style>
     
@@ -221,7 +208,6 @@
             <i class="fa-brands fa-slack"></i>
             Portfolio
         </a>
-        <!-- <button class="menu-toggle" onclick="toggleMenu()">☰</button> -->
         <button class="menu-toggle" type="button" id="menuToggle">☰</button>
         
         <ul class="menu ms-auto">
@@ -263,8 +249,6 @@
                     <p>Email: <a href="mailto:officialsumitkumar31@gmail.com">officialsumitkumar31@gmail.com</a></p>
                 </div>
     
-            
-        
                 <div class="detail-card">
                     <i class="fas fa-share-alt"></i>
                     <p>Social: 
@@ -274,9 +258,6 @@
                         <a href="https://www.facebook.com/sumit.kumar.2004?mibextid=ZbWKwL" class="social-link">
                             <i class="fab fa-facebook-f"></i> 
                         </a>
-                        <!-- <a href="https://www.linkedin.com/in/sumit-kumar-659751310/" class="social-link">
-                            <i class="fab fa-linkedin"></i> 
-                        </a> -->
                         <a href="https://github.com/Sumitkumar136" class="social-link">
                             <i class="fab fa-github"></i> 
                         </a>
@@ -291,31 +272,27 @@
 
     <!-- ===== Contact / Social Section (paste into contact.html) ===== -->
     <section class="contact-social">
-    <div class="container-contact">
-        <div class="contact-left">
-            <h2>Connect With Me</h2>
-            <p>I'm available on LinkedIn — feel free to connect or message me for collaboration, internships, or project inquiries.</p>
+        <div class="container-contact">
+            <div class="contact-left">
+                <h2>Connect With Me</h2>
+                <p>I'm available on LinkedIn — feel free to connect or message me for collaboration, internships, or project inquiries.</p>
 
-            <div class="social-icons">
-                <a href="https://leetcode.com/u/sumit_kumar5904/" target="_blank" rel="noopener" class="social-link">Leetcode</a>
-                <a href="https://unstop.com/u/sumitkum6512" target="_blank" rel="noopener" class="social-link">UnStop</a>
-                <a href="https://www.hackerrank.com/profile/officialsumitku1" target="_blank" rel="noopener" class="social-link">HackerRank</a>
+                <div class="social-icons">
+                    <a href="https://leetcode.com/u/sumit_kumar5904/" target="_blank" rel="noopener" class="social-link">Leetcode</a>
+                    <a href="https://unstop.com/u/sumitkum6512" target="_blank" rel="noopener" class="social-link">UnStop</a>
+                    <a href="https://www.hackerrank.com/profile/officialsumitku1" target="_blank" rel="noopener" class="social-link">HackerRank</a>
+                </div>
+
+                <p class="small-note">Or click the badge on the right to view my full LinkedIn profile and recommendations.</p>
             </div>
 
-            <p class="small-note">Or click the badge on the right to view my full LinkedIn profile and recommendations.</p>
-        </div>
-
-        <div class="contact-right">
-            <div class="linkedin-card" id="linkedin-card-container">
-                <!-- Badge will be injected here by JavaScript -->
+            <div class="contact-right">
+                <div class="linkedin-card" id="linkedin-card-container">
+                    <!-- Badge will be injected here by JavaScript -->
+                </div>
             </div>
         </div>
-    </div>
-</section>
-
-
-
-
+    </section>
 
     <!-- Contact form -->
     <section id="contact-form">
@@ -392,7 +369,6 @@
                 message: this.message.value
             };
 
-            // Send data to Google Sheet
             fetch(scriptURL, {
                 method: "POST",
                 body: JSON.stringify(formData),
@@ -422,46 +398,46 @@
     <script src="./JavaScript/dark_mode_script.js"></script>
     <script src="./JavaScript/chatBot.js"></script>
     
-<script src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+    <script src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
 
-<script>
-    function renderLinkedInBadge(theme) {
-        const container = document.getElementById("linkedin-card-container");
-        container.innerHTML = ""; // Clear existing badge
+    <script>
+        function renderLinkedInBadge(theme) {
+            const container = document.getElementById("linkedin-card-container");
+            container.innerHTML = ""; // Clear existing badge
 
-        const badgeDiv = document.createElement("div");
-        badgeDiv.className = "badge-base LI-profile-badge";
-        badgeDiv.setAttribute("data-locale", "en_US");
-        badgeDiv.setAttribute("data-size", "medium");
-        badgeDiv.setAttribute("data-theme", theme); // light or dark
-        badgeDiv.setAttribute("data-type", "VERTICAL");
-        badgeDiv.setAttribute("data-vanity", "sumit-kumar-ai");
-        badgeDiv.setAttribute("data-version", "v1");
+            const badgeDiv = document.createElement("div");
+            badgeDiv.className = "badge-base LI-profile-badge";
+            badgeDiv.setAttribute("data-locale", "en_US");
+            badgeDiv.setAttribute("data-size", "medium");
+            badgeDiv.setAttribute("data-theme", theme); // light or dark
+            badgeDiv.setAttribute("data-type", "VERTICAL");
+            badgeDiv.setAttribute("data-vanity", "sumit-kumar-ai");
+            badgeDiv.setAttribute("data-version", "v1");
 
-        container.appendChild(badgeDiv);
+            container.appendChild(badgeDiv);
 
-        // Load LinkedIn badge script
-        const script = document.createElement("script");
-        script.src = "https://platform.linkedin.com/badges/js/profile.js";
-        script.async = true;
-        container.appendChild(script);
-    }
+            // Load LinkedIn badge script
+            const script = document.createElement("script");
+            script.src = "https://platform.linkedin.com/badges/js/profile.js";
+            script.async = true;
+            container.appendChild(script);
+        }
 
-    // Detect current theme (example: using body class)
-    function detectTheme() {
-        return document.body.classList.contains("dark-mode") ? "dark" : "light";
-    }
+        // Detect current theme (example: using body class)
+        function detectTheme() {
+            return document.body.classList.contains("dark-mode") ? "dark" : "light";
+        }
 
-    // Initial render
-    renderLinkedInBadge(detectTheme());
-
-    // Optional: If theme can change dynamically on page
-    const observer = new MutationObserver(() => {
+        // Initial render
         renderLinkedInBadge(detectTheme());
-    });
 
-    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
-</script>
+        // Optional: If theme can change dynamically on page
+        const observer = new MutationObserver(() => {
+            renderLinkedInBadge(detectTheme());
+        });
+
+        observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    </script>
 
 </body>
 </html>
